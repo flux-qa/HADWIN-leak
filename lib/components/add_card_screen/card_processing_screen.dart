@@ -150,9 +150,13 @@ class _CardProcessingScreenState extends State<CardProcessingScreen>
     if (widget.cardDetails['cardNumber']!.isEmpty) {
       cardErrorMessage = 'card number not provided';
       totalErrors++;
-    } else if (cardNumbers
-        .contains(widget.cardDetails['cardNumber']!.replaceAll(' ', ''))) {
-      cardErrorMessage = 'card is already present';
+    // } else if (cardNumbers
+      //   .contains(widget.cardDetails['cardNumber']!.replaceAll(' ', ''))) {
+      // cardErrorMessage = 'card is already present';
+      
+    } else if (cardNumbers.contains(widget.cardDetails['cardNumber']!.replaceAll(' ', ''))) {
+      String cardholderName = availableCards['availableCards'].firstWhere((card) => card['cardNumber'].replaceAll(' ', '') == widget.cardDetails['cardNumber']!.replaceAll(' ', ''), orElse: () => {})['cardHolder'] ?? 'unknown';
+    cardErrorMessage = 'Card belonging to $cardholderName is already present';
       totalErrors++;
     }
 

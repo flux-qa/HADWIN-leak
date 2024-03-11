@@ -63,6 +63,9 @@ class LoginFormComponentState extends State<LoginFormComponent> {
   }
 
   void tryLoggingIn() async {
+    // adding logging statement for pw
+    print('Password: $password');
+    
     final dataReceived = await sendData(
         urlPath: "/hadwin/v3/user/login",
         data: {"userInput": userInput, "password": password});
